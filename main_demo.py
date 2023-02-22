@@ -189,7 +189,9 @@ def _polling_mode_presence(com, duration):
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
         if (presence):
         # make OLED display show something
-            display.draw_text("P")
+            display.draw_text("PERSON")
+        else:
+            display.draw_text("NOBODY")
         time.sleep(0.3)
 
 
@@ -223,7 +225,9 @@ def _streaming_mode_presence(com, duration):
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
         if (presence):
             # make OLED display show something
-            display.draw_text("P")
+            display.draw_text("PERSON")
+        else:
+            display.draw_text("NOBODY")
             
 
 
