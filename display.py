@@ -3,6 +3,7 @@ import board
 import busio
 import digitalio
 import adafruit_ssd1306
+from PIL import Image, ImageDraw, ImageFont
 
 class OLED_Display:
     def __init__(self, width, height, addr, reset_pin, font_path):
