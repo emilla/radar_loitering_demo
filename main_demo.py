@@ -21,6 +21,14 @@ from display import OLED_Display as Display
 import board
 import serial
 
+display = Display(128, 64, 0x3C, board.D4)
+
+def update_display(presence):
+    if presence:
+        display.draw_text('PERSON')
+    else:
+        display.draw_text('NOBODY')
+
 
 class ModuleError(Exception):
     """
@@ -177,7 +185,6 @@ def _polling_mode_presence(com, duration):
     # Wait for it to start
     com.wait_start()
     print('Sensor activated')
-    display = Display(128, 64, 0x3C, board.D4)
     start = time.monotonic()
     while time.monotonic() - start < duration:
         com.register_write(3, 4)
@@ -187,12 +194,9 @@ def _polling_mode_presence(com, duration):
         score = com.register_read(0xB1)
         distance = com.register_read(0xB2) / 1000
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
-        if (presence):
-        # make OLED display show something
-            display.draw_text("PERSON")
-        else:
-            display.draw_text("NOBODY")
+        update_display(presence)
         time.sleep(0.3)
+    display.clear_display()
 
 
 def _decode_streaming_buffer(stream):
@@ -223,12 +227,8 @@ def _streaming_mode_presence(com, duration):
         (presence, score, distance) = struct.unpack("<bff", buffer)
 
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
-        if (presence):
-            # make OLED display show something
-            display.draw_text("PERSON")
-        else:
-            display.draw_text("NOBODY")
-            
+        update_display(presence, display)
+    display.clear_display()
 
 
 def _streaming_mode_distance(com, duration):
