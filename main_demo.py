@@ -177,7 +177,7 @@ def _polling_mode_presence(com, duration):
     # Wait for it to start
     com.wait_start()
     print('Sensor activated')
-    display = Display(128, 64, 0x3C, board.D4, '~/radar_loitering_demo/res/PixelOperator.ttf')
+    display = Display(128, 64, 0x3C, board.D4)
     start = time.monotonic()
     while time.monotonic() - start < duration:
         com.register_write(3, 4)
@@ -213,7 +213,7 @@ def _decode_streaming_buffer(stream):
 
 def _streaming_mode_presence(com, duration):
     start = time.monotonic()
-    display = Display(128, 64, 0x3C, board.D4, '~/radar_loitering_demo/radar_loitering_demo/res/PixelOperator.ttf')
+    display = Display(128, 64, 0x3C, board.D4)
     while time.monotonic() - start < duration:
         stream = com.read_stream()
         _result_info, buffer = _decode_streaming_buffer(stream)
