@@ -28,9 +28,7 @@ class OLED_Display:
     # Clear the display    
     def clear_display(self):
         # Clear display.
-        self.oled.fill(0)
-        # self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
-
+        self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
     
     # Draw text on the display    
     def draw_text(self, text):

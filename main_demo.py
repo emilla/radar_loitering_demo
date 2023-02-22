@@ -196,7 +196,7 @@ def _polling_mode_presence(com, duration):
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
         update_display(presence)
         time.sleep(0.3)
-    display.clear_display()
+    update_display("")
 
 
 def _decode_streaming_buffer(stream):
@@ -227,8 +227,8 @@ def _streaming_mode_presence(com, duration):
         (presence, score, distance) = struct.unpack("<bff", buffer)
 
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
-        update_display(presence, display)
-    display.clear_display()
+        update_display(presence)
+    update_display("")
 
 
 def _streaming_mode_distance(com, duration):
