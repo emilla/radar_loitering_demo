@@ -37,7 +37,7 @@ class OLED_Display:
         self.font = ImageFont.truetype('PixelOperator.ttf', 50)
         self.icon_font = ImageFont.truetype('lineawesome-webfont.ttf', 50)
         self.clear_display()
-        self.draw.text((0, 0), text, font=self.font, fill=100)
+        self.draw.text((0, 0), text, font=self.font, fill=255)
         self.oled.image(self.image)
         self.oled.show()
 
