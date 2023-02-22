@@ -177,7 +177,7 @@ def _polling_mode_presence(com, duration):
     # Wait for it to start
     com.wait_start()
     print('Sensor activated')
-
+    display = Display(128, 64, 0x3C, board.D4, '~/radar_loitering_demo/res/PixelOperator.ttf')
     start = time.monotonic()
     while time.monotonic() - start < duration:
         com.register_write(3, 4)
@@ -187,7 +187,9 @@ def _polling_mode_presence(com, duration):
         score = com.register_read(0xB1)
         distance = com.register_read(0xB2) / 1000
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
-
+        if (presence):
+        # make OLED display show something
+            display.draw_text(0, 0, "P")
         time.sleep(0.3)
 
 
@@ -222,7 +224,6 @@ def _streaming_mode_presence(com, duration):
         if (presence):
             # make OLED display show something
             display.draw_text(0, 0, "P")
-            pass
             
 
 
