@@ -6,7 +6,7 @@ import adafruit_ssd1306
 from PIL import Image, ImageDraw, ImageFont
 
 class OLED_Display:
-    def __init__(self, width, height, addr, reset_pin):
+    def __init__(self, width, height, addr, reset_pin=board.D4):
         # Define the Reset Pin
         self.oled_reset = digitalio.DigitalInOut(reset_pin)
         # Display Parameters
@@ -27,16 +27,14 @@ class OLED_Display:
 
     # Clear the display    
     def clear_display(self):
-        print('Clearing display')
         self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
     
     # Draw text on the display    
     def draw_text(self, text):
         self.font = ImageFont.truetype('PixelOperator.ttf', 50)
         self.icon_font = ImageFont.truetype('lineawesome-webfont.ttf', 50)
-        print('Drawing text: ' + text)
         self.clear_display()
-        self.draw.text((0, 0), text, font=self.font, fill=255)
+        self.draw.text((0, 0), text, font=self.font, fill=100)
         self.oled.image(self.image)
         self.oled.show()
 

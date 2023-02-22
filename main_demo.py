@@ -21,7 +21,7 @@ from display import OLED_Display as Display
 import board
 import serial
 
-display = Display(128, 64, 0x3C, board.D4)
+display = Display(128, 64, 0x3C)
 
 def update_display(presence):
     if presence:
