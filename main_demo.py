@@ -16,7 +16,6 @@ import argparse
 import struct
 import sys
 import time
-#import OLED_Display class from display.py
 from display import OLED_Display as Display
 import board
 import serial
@@ -196,7 +195,7 @@ def _polling_mode_presence(com, duration):
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
         update_display(presence)
         time.sleep(0.3)
-    update_display("")
+    update_display(" ")
 
 
 def _decode_streaming_buffer(stream):
@@ -228,7 +227,7 @@ def _streaming_mode_presence(com, duration):
 
         print(f'Presence: {"True" if presence else "False"} score={score} distance={distance} m')
         update_display(presence)
-    update_display("")
+    update_display(" ")
 
 
 def _streaming_mode_distance(com, duration):
