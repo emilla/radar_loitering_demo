@@ -211,7 +211,7 @@ def _decode_streaming_buffer(stream):
 
 def _streaming_mode_presence(com, duration):
     start = time.monotonic()
-    display = Display(128, 64, 0x3C, board.D4, '~/radar_loitering_demo/lineawesome-webfont.ttf')
+    display = Display(128, 64, 0x3C, board.D4, '~/radar_loitering_demo/res/PixelOperator.ttf')
     while time.monotonic() - start < duration:
         stream = com.read_stream()
         _result_info, buffer = _decode_streaming_buffer(stream)
