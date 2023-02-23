@@ -27,6 +27,7 @@ def update_display(presence):
         display.draw_text('PERSON')
     else:
         display.draw_text('NOBODY')
+    display.clear_display()
 
 
 class ModuleError(Exception):
